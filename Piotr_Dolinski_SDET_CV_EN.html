@@ -3,299 +3,377 @@
 <!--The best-->
 <html lang="en">
 <!--Tester-->
+
 <head>
-    <meta charset="UTF-8">
-    <title>Piotr Doliński – Software Tester / SDET</title>
+  <meta charset="UTF-8">
+  <title>Piotr Doliński – Software Tester / SDET</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-    <style>
-        :root {
-            --primary-color: #17365d;
-            --secondary-color: #365f91;
-            --accent-bg: #f0f4f8;
-            --text-main: #222;
-            --text-light: #555;
-        }
+  <style>
+    :root {
+      --primary-color: #17365d;
+      --secondary-color: #365f91;
+      --accent-bg: #f0f4f8;
+      --text-main: #222;
+      --text-light: #555;
+    }
 
-        body {
-           font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-           color: var(--text-main);
-           max-width: 850px;
-           margin: 40px auto;
-           line-height: 1.5;
-           padding: 0 20px;
-         }
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text-main);
+      max-width: 850px;
+      margin: 40px auto;
+      line-height: 1.5;
+      padding: 0 20px;
+    }
 
-         header {
-           text-align: center;
-           border-bottom: 3px solid var(--primary-color);
-           margin-bottom: 25px;
-           padding-bottom: 15px;
-         }
+    header {
+      text-align: center;
+      border-bottom: 3px solid var(--primary-color);
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+    }
 
-         header h1 {
-           font-size: 30pt;
-           color: var(--primary-color);
-           margin: 0;
-           text-transform: uppercase;
-           letter-spacing: 2px;
-         }
+    header h1 {
+      font-size: 30pt;
+      color: var(--primary-color);
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
 
-         /* Links & Interaction */
-         a {
-           color: var(--secondary-color);
-           text-decoration: none;
-           border-bottom: 1px solid transparent;
-           transition: all 0.3s ease;
-         }
+    /* Links & Interaction */
+    a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: all 0.3s ease;
+    }
 
-         a:hover {
-           color: var(--primary-color);
-           border-bottom: 1px solid var(--primary-color);
-         }
+    a:hover {
+      color: var(--primary-color);
+      border-bottom: 1px solid var(--primary-color);
+    }
 
-         .contact {
-           display: flex;
-           justify-content: center;
-           flex-wrap: wrap;
-           gap: 20px;
-           margin-top: 15px;
-           font-size: 10pt;
-         }
+    .contact {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 15px;
+      font-size: 10pt;
+    }
 
-         .contact div {
-           display: flex;
-           align-items: center;
-           gap: 8px;
-         }
+    .contact div {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-         .contact i {
-           color: var(--primary-color);
-           width: 16px;
-           text-align: center;
-         }
+    .contact i {
+      color: var(--primary-color);
+      width: 16px;
+      text-align: center;
+    }
 
-         /* Section Styling */
-         h2 {
-           font-size: 16pt;
-           color: var(--primary-color);
-           border-bottom: 1px solid #dce6f1;
-           margin-top: 35px;
-           margin-bottom: 15px;
-           padding-bottom: 5px;
-           display: flex;
-           align-items: center;
-           gap: 12px;
-         }
+    /* Section Styling */
+    h2 {
+      font-size: 16pt;
+      color: var(--primary-color);
+      border-bottom: 1px solid #dce6f1;
+      margin-top: 35px;
+      margin-bottom: 15px;
+      padding-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-         h2 i {
-           font-size: 14pt;
-           color: var(--secondary-color);
-         }
+    h2 i {
+      font-size: 14pt;
+      color: var(--secondary-color);
+    }
 
-         /* Skills Pills */
-         .skills-container {
-           display: flex;
-           flex-wrap: wrap;
-           gap: 8px;
-           margin-bottom: 20px;
-         }
+    /* Skills Pills */
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
 
-         .skill-tag {
-           background: var(--accent-bg);
-           border: 1px solid #dce6f1;
-           color: var(--primary-color);
-           padding: 3px 12px;
-           border-radius: 6px;
-           font-size: 9.5pt;
-           font-weight: 600;
-           transition: all 0.25s ease;
-           cursor: default;
-         }
+    .skill-tag {
+      background: var(--accent-bg);
+      border: 1px solid #dce6f1;
+      color: var(--primary-color);
+      padding: 3px 12px;
+      border-radius: 6px;
+      font-size: 9.5pt;
+      font-weight: 600;
+      transition: all 0.25s ease;
+      cursor: default;
+    }
 
-         .skill-tag:hover {
-           background: var(--primary-color);
-           color: #fff;
-           transform: translateY(-2px);
-           box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-         }
+    .skill-tag:hover {
+      background: var(--primary-color);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-         /* Job Experience Layout */
-         .job-entry {
-           margin-bottom: 25px;
-           border-left: 3px solid #eee;
-           padding-left: 20px;
-           transition: border-left 0.3s;
-         }
+    /* Job Experience Layout */
+    .job-entry {
+      margin-bottom: 25px;
+      border-left: 3px solid #eee;
+      padding-left: 20px;
+      transition: border-left 0.3s;
+    }
 
-         .job-entry:hover {
-           border-left: 3px solid var(--primary-color);
-         }
+    .job-entry:hover {
+      border-left: 3px solid var(--primary-color);
+    }
 
-         .job-header {
-           display: flex;
-           justify-content: space-between;
-           align-items: baseline;
-         }
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
 
-         .job-header h3 {
-           font-size: 13pt;
-           color: var(--secondary-color);
-           margin: 0;
-         }
+    .job-header h3 {
+      font-size: 13pt;
+      color: var(--secondary-color);
+      margin: 0;
+    }
 
-         .date {
-           font-size: 9.5pt;
-           font-weight: bold;
-           color: var(--text-light);
-         }
+    .date {
+      font-size: 9.5pt;
+      font-weight: bold;
+      color: var(--text-light);
+    }
 
-         .cert-badge {
-           display: inline-block;
-           background: #e1f5fe;
-           color: #01579b;
-           padding: 1px 10px;
-           border-radius: 20px;
-           font-size: 8.5pt;
-           font-weight: bold;
-           border: 1px solid #b3e5fc;
-           vertical-align: middle;
-         }
+    .cert-badge {
+      display: inline-block;
+      background: #e1f5fe;
+      color: #01579b;
+      padding: 1px 10px;
+      border-radius: 20px;
+      font-size: 8.5pt;
+      font-weight: bold;
+      border: 1px solid #b3e5fc;
+      vertical-align: middle;
+    }
 
-         ul {
-           padding-left: 20px;
-           margin-top: 8px;
-         }
+    ul {
+      padding-left: 20px;
+      margin-top: 8px;
+    }
 
-         footer {
-           margin-top: 50px;
-           padding-top: 15px;
-           border-top: 1px solid #eee;
-           font-size: 8.5pt;
-           color: #888;
-           text-align: center;
-         }
+    footer {
+      margin-top: 50px;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+      font-size: 8.5pt;
+      color: #888;
+      text-align: center;
+    }
 
-         @media print {
-            body { margin: 10px auto; }
-            .skill-tag:hover { transform: none; box-shadow: none; }
-         }
-    </style>
+    @media print {
+      body {
+        margin: 10px auto;
+      }
+
+      .skill-tag:hover {
+        transform: none;
+        box-shadow: none;
+      }
+    }
+  </style>
 </head>
 <!--Money can buy!-->
+
 <body>
 
-<header>
+  <header>
     <h1>Piotr Doliński</h1>
     <div class="contact">
-        <div><i class="fa-solid fa-location-dot"></i> Warsaw, Poland</div>
-        <div><i class="fa-solid fa-envelope"></i> <a href="mailto:dolinski.piotr.95@gmail.com">dolinski.piotr.95@gmail.com</a></div>
-        <div><i class="fa-solid fa-phone"></i> +48 608 534 044</div>
-        <div><i class="fa-brands fa-linkedin"></i> <a href="https://www.linkedin.com/in/piotr-doli%C5%84ski-b51854163" target="_blank">LinkedIn Profile</a></div>
+      <div><i class="fa-solid fa-location-dot"></i> Warsaw, Poland</div>
+      <div><i class="fa-solid fa-envelope"></i> <a
+          href="mailto:dolinski.piotr.95@gmail.com">dolinski.piotr.95@gmail.com</a></div>
+      <div><i class="fa-solid fa-phone"></i> +48 608 534 044</div>
+      <div><i class="fa-solid fa-globe"></i> <a href="https://piotrdolinski.com/" target="_blank"><strong>piotrdolinski.com</strong></a></div>
+      <div><i class="fa-brands fa-linkedin"></i> <a href="https://www.linkedin.com/in/piotr-doli%C5%84ski-b51854163"
+          target="_blank">LinkedIn Profile</a></div>
     </div>
-</header>
+  </header>
 
-<section>
+  <section>
     <h2><i class="fa-solid fa-user-gear"></i> Professional Summary</h2>
     <p>
-        Results-oriented Software Tester and SDET with over 8 years of experience in manual and automated testing across fintech, banking, and gaming. Expert in establishing QA processes from scratch, defining test strategies, and architecting robust automation frameworks. Certified Scrum Master committed to bridging the gap between development and quality through Agile best practices.
+      Results-oriented SDET with <strong>10+ years of experience</strong> in manual and automated testing across
+      fintech, banking, and gaming. Expert in establishing QA processes from scratch, defining test strategies, and
+      architecting robust automation frameworks for web and mobile (Playwright, Appium, Maestro). Early adopter of
+      <strong>AI agents in testing workflows</strong>. Certified Scrum Master who also designs, builds and ships his
+      own React / Next.js &amp; React Native products — see <a href="https://piotrdolinski.com/" target="_blank">piotrdolinski.com</a>.
     </p>
-</section>
+  </section>
 
-<section>
+  <section>
     <h2><i class="fa-solid fa-code"></i> Technical Stack</h2>
     <div class="skills-container">
-        <span class="skill-tag">Java</span>
-        <span class="skill-tag">TypeScript</span>
-        <span class="skill-tag">Selenium</span>
-        <span class="skill-tag">Appium</span>
-        <span class="skill-tag">Detox</span>
-        <span class="skill-tag">Cypress</span>
-        <span class="skill-tag">REST API</span>
-        <span class="skill-tag">Postman</span>
-        <span class="skill-tag">GitHub Actions</span>
-        <span class="skill-tag">Docker</span>
-        <span class="skill-tag">Kibana</span>
-        <span class="skill-tag">SQL</span>
-        <span class="skill-tag">TDD/BDD</span>
-        <span class="skill-tag">Jira</span>
+      <span class="skill-tag">AI Agents in Testing</span>
+      <span class="skill-tag">Java</span>
+      <span class="skill-tag">TypeScript</span>
+      <span class="skill-tag">React / Next.js</span>
+      <span class="skill-tag">React Native</span>
+      <span class="skill-tag">Playwright</span>
+      <span class="skill-tag">Selenium</span>
+      <span class="skill-tag">Appium</span>
+      <span class="skill-tag">Detox</span>
+      <span class="skill-tag">Maestro</span>
+      <span class="skill-tag">Cypress</span>
+      <span class="skill-tag">REST API</span>
+      <span class="skill-tag">Postman</span>
+      <span class="skill-tag">GitHub Actions</span>
+      <span class="skill-tag">Docker</span>
+      <span class="skill-tag">Kibana</span>
+      <span class="skill-tag">SQL</span>
+      <span class="skill-tag">TDD/BDD</span>
+      <span class="skill-tag">Jira</span>
     </div>
-</section>
+  </section>
 
-<section>
+  <section>
     <h2><i class="fa-solid fa-briefcase"></i> Professional Experience</h2>
 
     <div class="job-entry">
-        <div class="job-header">
-            <h3>Software Tester / SDET | Mobilum Pay</h3>
-            <span class="date">02/2025 – Present</span>
-        </div>
-        <ul>
-            <li>Established the complete QA department, implementing quality gates and testing standards for fintech products.</li>
-            <li>Architected cross-platform automation frameworks (Appium, Detox, Cypress) for mobile and web.</li>
-            <li>Integrated automated test suites into CI/CD pipelines (GitHub Actions) for real-time quality feedback.</li>
-        </ul>
+      <div class="job-header">
+        <h3>Software Tester / SDET | Mobilum Pay</h3>
+        <span class="date">02/2025 – Present</span>
+      </div>
+      <ul>
+        <li>Built the QA department from scratch and act as the <strong>sole quality owner across all company
+            projects</strong> — defining quality gates, test strategies and testing standards for fintech web and
+          mobile products.</li>
+        <li>Architected cross-platform automation frameworks: <strong>Cypress</strong> for web, <strong>Appium and
+            Detox</strong> for mobile.</li>
+        <li>Implemented <strong>AI agents in the testing workflow</strong> (test design, test maintenance and
+          regression analysis), multiplying the throughput of a one-person QA team.</li>
+        <li>Created and maintain the complete test documentation: test strategies, test plans and release
+          checklists.</li>
+        <li>Integrated automated test suites into CI/CD pipelines (GitHub Actions) for real-time quality feedback.</li>
+      </ul>
     </div>
 
     <div class="job-entry">
-        <div class="job-header">
-            <h3>Software Tester | Nexio Management Ltd.</h3>
-            <span class="date">04/2021 – 01/2025</span>
-        </div>
-        <ul>
-            <li>Managed end-to-end testing lifecycles for high-traffic public sector web applications.</li>
-            <li>Balanced manual exploratory testing with strategic automation for critical business paths.</li>
-            <li>Prepared complex test data and led technical demonstrations for end-clients.</li>
-        </ul>
+      <div class="job-header">
+        <h3>Software Tester | Nexio Management Ltd.</h3>
+        <span class="date">04/2021 – 01/2025</span>
+      </div>
+      <ul>
+        <li>Managed end-to-end testing lifecycles for high-traffic public sector web applications.</li>
+        <li>Balanced manual exploratory testing with strategic automation for critical business paths.</li>
+        <li>Prepared complex test data and led technical demonstrations for end-clients.</li>
+      </ul>
     </div>
 
     <div class="job-entry">
-        <div class="job-header">
-            <h3>Software Test Analyst | Clear2Pay Poland</h3>
-            <span class="date">08/2018 – 04/2021</span>
-        </div>
-        <ul>
-            <li>Developed automated scenarios using TDD/BDD principles, enhancing code maintainability.</li>
-            <li>Acted as <strong>Scrum Master</strong> for 1 year, facilitating ceremonies and optimizing team workflows.</li>
-            <li>Standardized automation practices and mentored junior QA team members.</li>
-        </ul>
+      <div class="job-header">
+        <h3>Software Test Analyst | Clear2Pay Poland</h3>
+        <span class="date">08/2018 – 04/2021</span>
+      </div>
+      <ul>
+        <li>Developed automated scenarios using TDD/BDD principles, enhancing code maintainability.</li>
+        <li>Acted as <strong>Scrum Master</strong> for 1 year, facilitating ceremonies and optimizing team workflows.
+        </li>
+        <li>Standardized automation practices and mentored junior QA team members.</li>
+      </ul>
     </div>
 
     <div class="job-entry">
-        <div class="job-header">
-            <h3>Previous Roles | Altkom, Lionbridge, Testronic</h3>
-            <span class="date">10/2015 – 08/2018</span>
-        </div>
-        <ul>
-            <li>Black-box testing for insurance systems and functional/compatibility testing for AAA video games.</li>
-        </ul>
+      <div class="job-header">
+        <h3>Previous Roles | Altkom, Lionbridge, Testronic</h3>
+        <span class="date">10/2015 – 08/2018</span>
+      </div>
+      <ul>
+        <li>Black-box testing for insurance systems and functional/compatibility testing for AAA video games.</li>
+      </ul>
     </div>
-</section>
+  </section>
 
-<section>
+  <section>
+    <h2><i class="fa-solid fa-rocket"></i> Independent Projects</h2>
+    <p style="margin-top:-5px; font-size:10pt; color:var(--text-light);">
+      After hours I design, build, test and ship my own products.
+    </p>
+
+    <div class="job-entry">
+      <div class="job-header">
+        <h3><a href="https://piotrdolinski.com/" target="_blank">piotrdolinski.com</a> — Personal Website &amp;
+          Portfolio</h3>
+        <span class="date">Next.js · TypeScript · Tailwind CSS</span>
+      </div>
+      <ul>
+        <li>Modern, responsive portfolio with smooth animations (Framer Motion), dark mode and performance
+          optimization — designed, built and deployed end-to-end.</li>
+        <li>Includes a public <strong>Playwright</strong> demo testing suite: Page Object Model, parallel
+          cross-browser execution, accessibility testing (axe-core / WCAG) and CI/CD with automated reports.</li>
+      </ul>
+    </div>
+
+    <div class="job-entry">
+      <div class="job-header">
+        <h3><a href="https://bugthegathering.vercel.app/" target="_blank">Bug The Gathering</a> — Card Game
+          Deckbuilder <span class="cert-badge">in development</span>
+        </h3>
+        <span class="date">React 19 · Next.js · Supabase · TypeScript</span>
+      </div>
+      <ul>
+        <li>Browser-based card game deckbuilder with <strong>multiplayer PvP</strong>: real-time synchronization
+          (Supabase), drag-and-drop with 3D card effects (Framer Motion) and state management with Zustand.</li>
+        <li>Quality built in from day one: automated E2E tests (<strong>Cypress</strong>) plus integration and unit
+          tests (Vitest + React Testing Library).</li>
+        <li>React Native mobile version currently in development.</li>
+      </ul>
+    </div>
+
+    <div class="job-entry">
+      <div class="job-header">
+        <h3>Language Learning App <span class="cert-badge">in development</span></h3>
+        <span class="date">React Native</span>
+      </div>
+      <ul>
+        <li>Co-creating a mobile language-learning application — owning the quality side with <strong>Maestro</strong>
+          E2E automation and test strategy, while also contributing feature development.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
     <h2><i class="fa-solid fa-graduation-cap"></i> Education &amp; Certifications</h2>
     <div class="job-entry">
-        <div class="job-header">
-            <p><strong>Computer Science (Undergraduate Coursework, 4 semesters)</strong></p>
-            <span class="date">2015 – 2017</span>
-        </div>
-        <p style="margin:0;">Polish-Japanese Academy of Information Technology (PJATK/PJWSTK), Warsaw</p>
+      <div class="job-header">
+        <p><strong>Computer Science (Undergraduate Coursework, 4 semesters)</strong></p>
+        <span class="date">2015 – 2017</span>
+      </div>
+      <p style="margin:0;">Polish-Japanese Academy of Information Technology (PJATK/PJWSTK), Warsaw</p>
     </div>
 
     <ul style="margin-top: 15px;">
-        <li><strong>Certified Scrum Master (CSM)</strong> <span class="cert-badge">ScrumAlliance</span></li>
-        <li><strong>ISTQB Foundation Level</strong> <span class="cert-badge">Certified</span></li>
-        <li><strong>Technical Training:</strong> Java for Testers, Linux for Testers – Sages</li>
-        <li><strong>High School Diploma</strong> – LXV LO, Warsaw (2015)</li>
+      <li><strong>Certified Scrum Master (CSM)</strong> <span class="cert-badge">ScrumAlliance</span></li>
+      <li><strong>ISTQB Foundation Level</strong> <span class="cert-badge">Certified</span></li>
+      <li><strong>Technical Training:</strong> Java for Testers, Linux for Testers – Sages</li>
+      <li><strong>High School Diploma</strong> – LXV LO, Warsaw (2015)</li>
     </ul>
-</section>
+  </section>
 
-<footer>
+  <footer>
     <p style="font-size: 7pt; opacity: 0.5;">
-        I hereby give consent for my personal data included in my application to be processed for recruitment purposes (GDPR compliance).
+      I hereby give consent for my personal data included in my application to be processed for recruitment purposes
+      (GDPR compliance).
     </p>
-</footer>
+  </footer>
 
 </body>
+
 </html>
