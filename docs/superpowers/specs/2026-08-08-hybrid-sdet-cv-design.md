@@ -31,16 +31,16 @@ The narrative hierarchy is:
 
 Use this evidence-led summary as the implementation draft:
 
-> Senior SDET with 10+ years of experience in quality engineering, test automation, and hands-on software development across fintech, payments, and public-sector systems. First and sole QA at Mobilum Pay, owning quality strategy and automation across five engineering teams, approximately 10 developers, approximately 10 API services, and mobile/web products. Built pull-request-gated CI coverage with approximately 200 REST Assured API tests, approximately 40 Detox mobile E2E scenarios, and Cypress web suites, replacing an estimated 4–6 hours of manual regression with a 40–60-minute pipeline. Builds React Native, Expo, and Next.js products, combining software engineering with quality leadership.
+> Senior SDET with 10+ years of experience in quality engineering, test automation, and hands-on software development across fintech, payments, and public-sector systems. First and sole QA at Mobilum Pay, owning quality strategy and automation across five engineering teams, a distributed API platform, and mobile/web products. Built REST Assured, Detox, and Cypress coverage enforced by a required GitHub Actions quality gate on every pull request. Builds React Native, Expo, and Next.js products, combining software engineering with quality leadership.
 
 It must preserve these facts:
 
 - 10+ years in quality engineering and test automation.
 - Hands-on software development across fintech, payments, public-sector systems, mobile, and web.
 - First and sole QA at Mobilum Pay.
-- Quality ownership across five teams, approximately ten developers, approximately ten API services, and mobile/web products.
-- Approximately 200 REST Assured API tests, approximately 40 Detox mobile E2E scenarios, and Cypress web suites.
-- A pull-request quality gate completing the mobile build and automated regression in 40–60 minutes, replacing an estimated 4–6 hours of equivalent manual regression.
+- Quality ownership across five engineering teams, a distributed API platform, and mobile/web products.
+- REST Assured API automation, Detox coverage of critical React Native interactions, and Cypress web suites.
+- A required pull-request quality gate that builds the application and runs automated API, mobile, and web checks before merge.
 - Current React Native/Expo and Next.js engineering projects.
 
 Avoid unsupported adjectives such as `expert`, `robust`, `strategic`, and `multiplying throughput` when no evidence follows them.
@@ -72,9 +72,9 @@ Only technologies supported by professional experience or inspected projects sho
 
 Use four evidence-led bullets:
 
-- Joined as the company's first QA engineer and remains the sole owner of quality strategy, release criteria, environments, defect management, reporting, and go/no-go decisions across five engineering teams and approximately ten developers.
-- Built and maintains automated coverage for approximately ten API services and mobile/web products: approximately 200 REST Assured API tests, approximately 40 Detox E2E scenarios covering the critical React Native interactions, and Cypress web suites.
-- Designed a GitHub Actions pull-request quality gate that builds the mobile app and runs the automated suites in 40–60 minutes, replacing an estimated 4–6 hours of equivalent manual regression.
+- Joined as the company's first QA engineer and remains the sole owner of quality strategy, release criteria, environments, defect management, reporting, and go/no-go decisions across five engineering teams.
+- Built and maintains REST Assured API automation, Detox coverage of critical React Native interactions, and Cypress web suites across the company's distributed fintech platform.
+- Designed a required GitHub Actions quality gate that builds the application and runs automated API, mobile, and web checks on every pull request before merge.
 - Include a restrained AI-assisted QA bullet describing test design, maintenance, and regression analysis, without an invented productivity percentage.
 
 Omit the detailed product description because the application is being withdrawn/rebranded. The fintech domain is already represented in the summary.
@@ -105,10 +105,10 @@ Rename `Independent Projects` to `Selected Engineering Projects`.
 
 Use two concise bullets demonstrating both SWE and quality engineering:
 
-- Offline-first React Native/Expo roguelike deckbuilder with a deterministic TypeScript combat engine, seeded progression, five classes, 400+ card definitions, Zustand persistence, and Skia/Reanimated rendering.
+- Offline-first React Native/Expo roguelike deckbuilder with a deterministic TypeScript combat engine, seeded progression, five classes, hundreds of card definitions, Zustand persistence, and Skia/Reanimated rendering.
 - A large Jest regression suite covering combat rules, balance simulations, content/localization consistency, animation timing, and previously observed failures, executed in pull-request CI.
 
-Do not claim store publication, production users, or business results. Use `400+ card definitions` instead of a volatile exact count.
+Do not claim store publication, production users, business results, or volatile exact content counts.
 
 ### Private Language-Learning Platform
 
@@ -124,7 +124,7 @@ Keep the product generic and do not link private repositories.
 Use two bullets:
 
 - Designed and built a multilingual Next.js/TypeScript portfolio supporting five locales, localized routing and metadata, dark mode, responsive behavior, and RTL Arabic.
-- Created 67 logical Playwright E2E tests across five desktop/mobile browser profiles, covering critical journeys, accessibility with axe-core/WCAG, responsiveness, localization, and SEO in GitHub Actions.
+- Created a Playwright E2E suite executed across desktop and mobile browser profiles, covering critical journeys, accessibility with axe-core/WCAG, responsiveness, localization, and SEO in GitHub Actions.
 
 Link the portfolio and public test-suite repository.
 
@@ -171,7 +171,7 @@ Make only targeted visual changes:
 - One English hybrid CV, primarily SDET/SWE with credible QA leadership.
 - Current design language remains recognizably intact.
 - Professional claims match confirmed facts and local project evidence.
-- The strongest metrics appear in the summary and Mobilum Pay experience.
+- The strongest evidence of scope, ownership, architecture, and automated quality gates appears in the summary and Mobilum Pay experience.
 - Software engineering projects receive enough space to prove genuine development depth.
 - The HTML is valid, readable, and suitable for exporting to a selectable-text PDF.
 - Print output is no more than two A4 pages without splitting individual job/project entries awkwardly.
