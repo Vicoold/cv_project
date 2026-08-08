@@ -97,11 +97,11 @@ Publication is allowed only after all applicable gates pass:
 
 1. Portfolio static checks and production build pass.
 2. The complete source Playwright suite passes on Chromium, Firefox, WebKit, Mobile Chrome, and Mobile Safari.
-3. The copied public package installs from its lockfile and passes as a black-box suite against `https://piotrdolinski.com`.
+3. The copied public package installs from its lockfile and passes as a black-box suite against the verified local production build through an explicit `BASE_URL`.
 4. The CV HTML passes content checks and `git diff --check`.
 5. The regenerated CV PDF contains exactly two A4 pages, selectable text, working public URLs, no clipped content, and no broken page layout when rendered to images.
-6. After pushing the CV repository, its public GitHub Actions workflow passes and both Code and Demo URLs resolve.
-7. After pushing the portfolio repository, its own checks pass and the deployed site exposes the intended Code and Demo actions without changing the private status of other projects.
+6. After both repositories are pushed and the portfolio deployment is current, the public package passes again against `https://piotrdolinski.com` in GitHub Actions and both Code and Demo URLs resolve.
+7. The portfolio repository's own checks pass and the deployed site exposes the intended Code and Demo actions without changing the private status of other projects.
 
 If a remote CI or deployment service is unavailable, retain the verified local commits, report the external blocker precisely, and do not describe the remote gate as passed.
 
@@ -110,9 +110,9 @@ If a remote CI or deployment service is unavailable, retain the verified local c
 1. Commit this design and the implementation plan in the CV repository.
 2. Commit source test and application repairs in the `web` repository.
 3. Commit the public package and CV artifacts in the CV repository.
-4. Push the CV `master` branch and verify the public package workflow and URLs.
-5. Commit or finalize the portfolio link changes against the now-public URLs.
-6. Push the `web` `master` branch and verify its CI/deployment.
+4. Push the CV `master` branch so the public package and workflow URLs exist.
+5. Push the already-verified `web` `master` branch and wait for its CI/deployment.
+6. Run or rerun the public workflow against the current production deployment and require a green result.
 
 All unrelated user changes must remain untouched. Generated test output must not be committed unless it is an intentional published artifact described above.
 
