@@ -194,12 +194,19 @@
     }
 
     footer {
-      margin-top: 50px;
-      padding-top: 15px;
-      border-top: 1px solid #eee;
-      font-size: 8.5pt;
-      color: #888;
+      margin-top: 18px;
+      padding-top: 10px;
+      border-top: 1px solid #ccc;
+      font-size: 8pt;
+      color: #555;
       text-align: center;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 8pt;
+      color: #555;
+      opacity: 1;
     }
 
     @page {
@@ -233,10 +240,25 @@
       }
 
       .skills-groups,
-      .skills-group,
+      .skills-group {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      /* Keep the GDPR consent on the last printable page, not below the page box. */
       footer {
         break-inside: avoid;
         page-break-inside: avoid;
+        margin-top: 12px;
+        padding-top: 8px;
+        border-top: 1px solid #bbb;
+        color: #444;
+      }
+
+      footer p {
+        font-size: 7.5pt !important;
+        color: #444 !important;
+        opacity: 1 !important;
       }
 
       a {
@@ -462,7 +484,7 @@
   </section>
 
   <footer>
-    <p style="font-size: 7pt; opacity: 0.5;">
+    <p>
       I hereby give consent for my personal data included in my application to be processed for recruitment purposes.
     </p>
   </footer>
