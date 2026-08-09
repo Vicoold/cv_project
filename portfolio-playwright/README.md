@@ -57,13 +57,14 @@ npm run test:list
 
 The suite covers:
 
-- critical smoke, navigation, contact, CV, and project journeys;
-- English, Polish, German, Spanish, and Arabic routing and content contracts;
+- critical smoke loads with content contracts, CV success and failure paths;
+- consolidated hero/social link contracts and multi-step navigation journeys;
+- English and Polish content contracts plus multi-locale project-detail copy;
 - desktop and mobile responsive behavior, layout geometry, and touch targets;
 - semantic and keyboard accessibility contracts plus axe-core scans;
 - canonical, OpenGraph, and locale-specific SEO metadata;
-- the portfolio's intentional bug-hunt interactions;
-- public Code/Demo links and private-project affordances.
+- the full intentional bug-hunt (including spotlight-hidden bugs and 7/7 completion);
+- public Code/Demo links, private-project affordances, and CV PDF download integrity.
 
 Playwright runs the same tests through five configured projects:
 

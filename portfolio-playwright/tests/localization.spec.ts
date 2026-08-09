@@ -12,7 +12,6 @@ test.describe('Localization Tests', () => {
     const homePage = new HomePage(page);
     await homePage.navigate();
 
-    // Check for English text (Hero badge)
     const badge = page.getByText(/Available for opportunities/i);
     await expect(badge).toBeVisible();
   });
@@ -21,10 +20,8 @@ test.describe('Localization Tests', () => {
     const homePage = new HomePage(page);
     await homePage.navigate();
 
-    // Navigate to Polish version
     await page.goto('/pl');
 
-    // Check for Polish text
     const badge = page.getByText(/Dostępny do nowych wyzwań/i);
     await expect(badge).toBeVisible();
 
@@ -32,27 +29,33 @@ test.describe('Localization Tests', () => {
     expect(name).toContain('Piotr');
   });
 
-  test('all pages should support Polish locale', async ({ page }) => {
-    const paths = ['/projects', '/about', '/cv', '/testing'];
+  test('Polish routes keep locale and render localized page content', async ({ page }) => {
+    const routes: Array<{ path: string; content: RegExp }> = [
+      { path: '/projects', content: /Wybrane Projekty/i },
+      { path: '/about', content: /Podejście do/i },
+      { path: '/cv', content: /Podgląd na żywo|Piotr/i },
+      { path: '/testing', content: /Ta strona|testowana/i },
+    ];
 
-    for (const path of paths) {
-      await page.goto(`/pl${path}`);
+    for (const route of routes) {
+      await page.goto(`/pl${route.path}`);
       await expect(page).not.toHaveTitle(/404|Not Found/i);
-      await expect(page).toHaveURL(new RegExp(`/pl${path}(?:/|$)`));
+      await expect(page).toHaveURL(new RegExp(`/pl${route.path}(?:/|$)`));
+      await expect(page.getByRole('main')).toBeVisible();
+      await expect(page.getByRole('main')).toContainText(route.content);
     }
   });
 
-  test('language persistence (simulated via URL)', async ({ page }) => {
-    // Navigate to a Polish page
+  test('locale segment is preserved when moving between Polish pages via URL', async ({ page }) => {
+    // This checks URL-based locale continuity, not cookie/localStorage preference storage.
     await page.goto('/pl/projects');
     await expect(page).not.toHaveTitle(/404/i);
     await expect(page).toHaveURL(/\/pl\/projects(?:\/|$)/);
+    await expect(page.getByRole('main')).toContainText(/Wybrane Projekty/i);
 
-    // Navigate to another page via internal link (if any) or URL
     await page.goto('/pl/about');
     await expect(page).toHaveURL(/\/pl\/about(?:\/|$)/);
 
-    // Title should be in Polish
     const mindsetTitle = page.locator('#mindset-title');
     await expect(mindsetTitle).toBeVisible();
     await expect(mindsetTitle).toContainText(/Podejście do/i);

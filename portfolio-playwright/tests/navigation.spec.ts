@@ -22,6 +22,47 @@ test.describe('Navigation Tests', () => {
     await homePage.navigate();
   });
 
+  test('hero primary and social links expose exact destinations and safe attributes', async ({
+    page,
+  }) => {
+    // Single link-contract test (replaces scattered smoke/nav href-only duplicates).
+    await expect(homePage.cvButton).toBeVisible();
+    await expect(homePage.cvButton).toBeEnabled();
+    await expect(homePage.cvButton).toHaveAttribute('href', localePath('/cv'));
+    await expect(homePage.cvButton).toHaveAttribute('target', '_blank');
+    await expect(homePage.cvButton).toHaveAttribute('rel', 'noopener noreferrer');
+
+    await expect(homePage.projectsButton).toHaveAttribute('href', localePath('/projects'));
+    await expect(homePage.contactButton).toHaveAttribute('href', localePath('/about#contact'));
+
+    await expect(homePage.githubLink).toBeVisible();
+    await expect(homePage.githubLink).toHaveAttribute('href', 'https://github.com/Vicoold');
+    await expect(homePage.githubLink).toHaveAttribute('target', '_blank');
+    await expect(homePage.githubLink).toHaveAttribute('rel', 'noopener noreferrer');
+
+    await expect(homePage.linkedinLink).toBeVisible();
+    await expect(homePage.linkedinLink).toHaveAttribute(
+      'href',
+      'https://www.linkedin.com/in/piotr-doli%C5%84ski-b51854163',
+    );
+    await expect(homePage.linkedinLink).toHaveAttribute('target', '_blank');
+    await expect(homePage.linkedinLink).toHaveAttribute('rel', 'noopener noreferrer');
+
+    await expect(homePage.emailLink).toBeVisible();
+    await expect(homePage.emailLink).toHaveAttribute('href', localePath('/about#contact'));
+
+    const externalLinks = page.locator('a[href^="http"]:visible');
+    const linkCount = await externalLinks.count();
+    expect(linkCount).toBeGreaterThan(0);
+
+    for (let index = 0; index < linkCount; index += 1) {
+      const href = await externalLinks.nth(index).getAttribute('href');
+      expect(href).not.toBeNull();
+      expect(() => new URL(href as string)).not.toThrow();
+      expect(href).toMatch(/^https?:\/\//);
+    }
+  });
+
   test('clicking "View Projects" reaches the exact localized projects page', async ({ page }) => {
     await expect(homePage.heroSection).toBeVisible();
     await expect(homePage.projectsButton).toHaveAttribute('href', localePath('/projects'));
@@ -39,39 +80,6 @@ test.describe('Navigation Tests', () => {
 
     await expectExactLocalizedUrl(page, '/about#contact');
     await expect(page.getByTestId('contact-section')).toBeVisible();
-  });
-
-  test('CV link exposes its exact destination and safe new-tab attributes', async () => {
-    await expect(homePage.cvButton).toHaveAttribute('href', localePath('/cv'));
-    await expect(homePage.cvButton).toHaveAttribute('target', '_blank');
-    await expect(homePage.cvButton).toHaveAttribute('rel', 'noopener noreferrer');
-  });
-
-  test('external social links expose exact safe-link attributes', async () => {
-    await expect(homePage.githubLink).toHaveAttribute('href', 'https://github.com/Vicoold');
-    await expect(homePage.githubLink).toHaveAttribute('target', '_blank');
-    await expect(homePage.githubLink).toHaveAttribute('rel', 'noopener noreferrer');
-
-    await expect(homePage.linkedinLink).toHaveAttribute(
-      'href',
-      'https://www.linkedin.com/in/piotr-doli%C5%84ski-b51854163',
-    );
-    await expect(homePage.linkedinLink).toHaveAttribute('target', '_blank');
-    await expect(homePage.linkedinLink).toHaveAttribute('rel', 'noopener noreferrer');
-  });
-
-  test('rendered external links use absolute HTTP or HTTPS destinations', async ({ page }) => {
-    await expect(homePage.githubLink).toBeVisible();
-    const externalLinks = page.locator('a[href^="http"]:visible');
-    const linkCount = await externalLinks.count();
-    expect(linkCount).toBeGreaterThan(0);
-
-    for (let index = 0; index < linkCount; index += 1) {
-      const href = await externalLinks.nth(index).getAttribute('href');
-      expect(href).not.toBeNull();
-      expect(() => new URL(href as string)).not.toThrow();
-      expect(href).toMatch(/^https?:\/\//);
-    }
   });
 
   test('user can navigate to the first project details page and back', async ({ page }) => {
@@ -118,14 +126,5 @@ test.describe('Critical User Paths', () => {
     await homePage.clickContactMe();
     await expectExactLocalizedUrl(page, '/about#contact');
     await expect(page.getByTestId('contact-section')).toBeVisible();
-  });
-
-  test('CV action exposes the exact localized destination', async ({ page }) => {
-    const homePage = new HomePage(page);
-    await homePage.navigate();
-
-    await expect(homePage.cvButton).toBeVisible();
-    await expect(homePage.cvButton).toBeEnabled();
-    await expect(homePage.cvButton).toHaveAttribute('href', localePath('/cv'));
   });
 });

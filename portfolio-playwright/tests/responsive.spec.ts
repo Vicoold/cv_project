@@ -170,7 +170,7 @@ test.describe('Responsive Design Tests', () => {
   });
 });
 
-test.describe('Visual Regression (Lightweight)', () => {
+test.describe('Layout geometry contracts', () => {
   test('hero content follows the intended vertical order', async ({ page }) => {
     await page.goto(localePath());
 

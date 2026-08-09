@@ -226,6 +226,17 @@ test.describe('CV download', () => {
     expect(download.suggestedFilename()).toBe(CV_FILENAME);
     const downloadedPath = await download.path();
     expect(downloadedPath).not.toBeNull();
-    expect((await stat(downloadedPath!)).size).toBeGreaterThan(0);
+    const fileStat = await stat(downloadedPath!);
+    expect(fileStat.size).toBeGreaterThan(1024);
+
+    const header = Buffer.alloc(5);
+    const { open } = await import('node:fs/promises');
+    const handle = await open(downloadedPath!, 'r');
+    try {
+      await handle.read(header, 0, 5, 0);
+    } finally {
+      await handle.close();
+    }
+    expect(header.toString('utf8')).toBe('%PDF-');
   });
 });

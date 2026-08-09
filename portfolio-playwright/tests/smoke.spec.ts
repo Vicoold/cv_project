@@ -51,9 +51,7 @@ test.describe('Smoke Tests - Critical Functionality', () => {
       if (isCancelledNextPrefetch) return;
 
       if (requestUrl.origin === applicationOrigin) {
-        sameOriginFailures.push(
-          `${failure} ${requestUrl.pathname}`,
-        );
+        sameOriginFailures.push(`${failure} ${requestUrl.pathname}`);
       }
     });
 
@@ -71,46 +69,26 @@ test.describe('Smoke Tests - Critical Functionality', () => {
     await expect(homePage.heroTitle).toContainText(/QA|SDET/i);
   });
 
-  test('all main sections are present', async () => {
+  test('homepage exposes the hero and intro sections with content', async () => {
+    // The home route only mounts hero + intro; other sections live on dedicated routes.
     await expect(homePage.heroSection).toBeVisible();
+    await expect(homePage.heroName).toContainText('Piotr');
     await expect(homePage.introSection).toBeVisible();
+    await expect(homePage.introSection).toContainText(/\S/);
   });
 
-  test('CV link has the exact localized destination', async () => {
-    await expect(homePage.cvButton).toBeVisible();
-    await expect(homePage.cvButton).toBeEnabled();
-    await expect(homePage.cvButton).toHaveAttribute('href', localePath('/cv'));
-  });
-
-  test('primary CTA links expose their exact localized destinations', async () => {
-    await expect(homePage.cvButton).toHaveAttribute('href', localePath('/cv'));
-    await expect(homePage.projectsButton).toHaveAttribute('href', localePath('/projects'));
-    await expect(homePage.contactButton).toHaveAttribute('href', localePath('/about#contact'));
-  });
-
-  test('hero social links expose their exact destinations', async () => {
-    await expect(homePage.githubLink).toBeVisible();
-    await expect(homePage.linkedinLink).toBeVisible();
-    await expect(homePage.emailLink).toBeVisible();
-
-    await expect(homePage.githubLink).toHaveAttribute('href', 'https://github.com/Vicoold');
-    await expect(homePage.linkedinLink).toHaveAttribute(
-      'href',
-      'https://www.linkedin.com/in/piotr-doli%C5%84ski-b51854163',
-    );
-    await expect(homePage.emailLink).toHaveAttribute('href', localePath('/about#contact'));
-  });
-
-  test('about page loads successfully', async ({ page }) => {
+  test('about page exposes the quality mindset content', async ({ page }) => {
     const aboutPage = new AboutPage(page);
     await aboutPage.navigate();
     await expect(aboutPage.qualitySection).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Quality Mindset|Podejście do/i })).toBeVisible();
   });
 
-  test('CV page loads successfully', async ({ page }) => {
+  test('CV page loads a usable document preview', async ({ page }) => {
     const cvPage = new CVPage(page);
     await cvPage.navigate();
     await cvPage.expectUsableCV();
+    await expect(page.getByText(/Live Preview|Podgląd na żywo/i)).toBeVisible();
   });
 
   test('CV page shows an error when the remote document cannot be loaded', async ({ page }) => {
@@ -127,17 +105,21 @@ test.describe('Smoke Tests - Critical Functionality', () => {
     await expect(cvPage.cvContainer).not.toHaveAttribute('data-loaded', 'true');
   });
 
-  test('projects page loads successfully', async ({ page }) => {
+  test('projects page exposes the featured projects showcase', async ({ page }) => {
     const projectsPage = new ProjectsPage(page);
     await projectsPage.navigate();
     await expect(projectsPage.projectsSection).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Featured Projects|Wybrane Projekty/i })).toBeVisible();
+    await expect(page.getByTestId('project-card').first()).toBeVisible();
   });
 
-  test('testing and technical experience page loads successfully', async ({ page }) => {
+  test('testing page exposes strategy and skills content', async ({ page }) => {
     const testingPage = new TestingPage(page);
     await testingPage.navigate();
     await expect(testingPage.testingSection).toBeVisible();
     await expect(testingPage.skillsSection).toBeVisible();
+    await expect(page.getByRole('heading', { name: /This Site is|Ta strona/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Technical Experience|techniczne doświadczenie/i })).toBeVisible();
   });
 
   test('contact journey reaches the exact localized section', async ({ page }) => {
@@ -147,5 +129,6 @@ test.describe('Smoke Tests - Critical Functionality', () => {
     await expectExactLocalizedUrl(page, '/about#contact');
     await expect(contactPage.contactSection).toBeVisible();
     await expect(contactPage.emailLink).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Let's|Porozmawiajmy|Connect/i })).toBeVisible();
   });
 });
