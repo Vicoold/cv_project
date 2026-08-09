@@ -76,12 +76,32 @@ test.describe('Accessibility Tests', () => {
       await page.goto(localePath(route));
       await expect(page.getByRole('main')).toBeVisible();
 
+      // Wait until every image has settled an alt attribute so engines that paint
+      // progressive markup do not assert against a transient empty shell.
+      await expect
+        .poll(async () => page.locator('img').evaluateAll((nodes) => nodes.every((node) => node.hasAttribute('alt'))))
+        .toBe(true);
+
       const images = page.locator('img');
       const imageCount = await images.count();
       expect(imageCount).toBeGreaterThan(0);
 
       for (let index = 0; index < imageCount; index += 1) {
-        await expectMeaningfulImageAlternative(images.nth(index));
+        const image = images.nth(index);
+        try {
+          await expectMeaningfulImageAlternative(image);
+        } catch (error) {
+          const details = await image.evaluate((element) => ({
+            src: element.getAttribute('src') ?? element.getAttribute('srcset') ?? '',
+            alt: element.getAttribute('alt'),
+            ariaHidden: element.getAttribute('aria-hidden'),
+            role: element.getAttribute('role'),
+            outerHTML: element.outerHTML.slice(0, 240),
+          }));
+          throw new Error(
+            `Image accessibility contract failed on ${route} (#${index}): ${JSON.stringify(details)}\n${String(error)}`,
+          );
+        }
       }
     }
   });
