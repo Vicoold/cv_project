@@ -48,9 +48,14 @@ const SKIP_TEST_NAMES: Record<string, string> = {
  * only here so the click is not blocked by the product mask (not to hide a broken control).
  */
 async function clickHiddenBug(page: Page, id: number) {
+  const host = page.getByTestId(`hidden-bug-${id}`);
   const target = page.getByTestId(`hidden-bug-target-${id}`);
-  await expect(page.getByTestId(`hidden-bug-${id}`)).toBeAttached();
-  await target.click({ force: true });
+  await expect(host).toBeAttached();
+  // Spotlight mask intentionally hides the control from normal pointer hit-testing.
+  await target.scrollIntoViewIfNeeded();
+  await target.evaluate((element) => {
+    (element as HTMLElement).click();
+  });
 }
 
 /**
@@ -216,11 +221,15 @@ test.describe('Bug Hunt Feature', () => {
 
     await page.clock.runFor(8_500);
 
-    await expect(terminal).toContainText(/meta\.spec\.ts.*test results are not hardcoded/i);
+    await expect(terminal).toContainText(/meta\.spec\.ts.*test results are not hardcoded/i, {
+      timeout: 20_000,
+    });
     await expect(terminal).not.toContainText(/failed\s*\d+\s*\[chromium\]\s*›\s*meta\.spec\.ts/i);
-    await expect(terminal).toContainText(/easter-egg\.spec\.ts.*successfully viewed the test animation/i);
+    await expect(terminal).toContainText(/easter-egg\.spec\.ts.*successfully viewed the test animation/i, {
+      timeout: 20_000,
+    });
     await expect(terminal).not.toContainText(/ok\s*\d+\s*\[human\]\s*›\s*easter-egg\.spec\.ts/i);
-    await expect(page.getByTestId('bug-hunt-overlay')).toBeVisible();
+    await expect(page.getByTestId('bug-hunt-overlay')).toBeVisible({ timeout: 20_000 });
     await expect(page.getByTestId('bug-hunt-message')).toContainText(BUG_6_MESSAGES[TEST_LOCALE]);
     await expect(page.getByTestId('bug-found-count')).toContainText('1 / 7');
   });

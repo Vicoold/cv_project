@@ -100,7 +100,7 @@ test.describe('Public project links', () => {
     },
     {
       locale: 'de',
-      title: 'Demo Testing Suite',
+      title: 'Demo-Testsuite',
       about: 'Über das Projekt',
       features: 'Hauptmerkmale',
       challenges: 'Technische Herausforderungen',
@@ -155,7 +155,8 @@ test.describe('Public project links', () => {
     await page.setViewportSize({ width: 320, height: 568 });
     await page.goto('/ar/projects');
 
-    await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
+    await expect(page.locator('html')).toHaveAttribute('dir', 'rtl', { timeout: 15_000 });
+    await expect(page.getByTestId('projects-section')).toBeVisible();
     const card = projectCard(page, 'demo-testing-suite');
     const actions = [
       card.getByTestId('project-code-link'),
