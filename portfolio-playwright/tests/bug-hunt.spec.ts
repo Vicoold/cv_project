@@ -207,13 +207,21 @@ test.describe('Bug Hunt Feature', () => {
     await expect(page.getByTestId('bug-found-count')).toContainText('7 / 7');
     await expect(page.getByTestId('bug-hunt-counter')).toContainText(COMPLETED_LABELS[TEST_LOCALE]);
   });
+});
 
+/**
+ * Terminal tests install a fake clock before the first navigation and must not
+ * share the home-page beforeEach (which races WebKit when time is mocked).
+ */
+test.describe('Bug Hunt Terminal Animation', () => {
   test('Bug 6: Finding bug in terminal (Testing page)', async ({ page }) => {
-    await page.clock.install();
+    test.setTimeout(90_000);
+
     await page.addInitScript(() => {
+      localStorage.clear();
       Math.random = () => 0;
     });
-
+    await page.clock.install();
     await page.goto(localePath('/testing'));
 
     const terminal = page.getByTestId('terminal-content');
@@ -221,15 +229,11 @@ test.describe('Bug Hunt Feature', () => {
 
     await page.clock.runFor(8_500);
 
-    await expect(terminal).toContainText(/meta\.spec\.ts.*test results are not hardcoded/i, {
-      timeout: 20_000,
-    });
+    await expect(terminal).toContainText(/meta\.spec\.ts.*test results are not hardcoded/i);
     await expect(terminal).not.toContainText(/failed\s*\d+\s*\[chromium\]\s*›\s*meta\.spec\.ts/i);
-    await expect(terminal).toContainText(/easter-egg\.spec\.ts.*successfully viewed the test animation/i, {
-      timeout: 20_000,
-    });
+    await expect(terminal).toContainText(/easter-egg\.spec\.ts.*successfully viewed the test animation/i);
     await expect(terminal).not.toContainText(/ok\s*\d+\s*\[human\]\s*›\s*easter-egg\.spec\.ts/i);
-    await expect(page.getByTestId('bug-hunt-overlay')).toBeVisible({ timeout: 20_000 });
+    await expect(page.getByTestId('bug-hunt-overlay')).toBeVisible();
     await expect(page.getByTestId('bug-hunt-message')).toContainText(BUG_6_MESSAGES[TEST_LOCALE]);
     await expect(page.getByTestId('bug-found-count')).toContainText('1 / 7');
   });
@@ -237,11 +241,13 @@ test.describe('Bug Hunt Feature', () => {
   test('terminal fast-forward does not present fake lines as repository test numbers', async ({
     page,
   }) => {
-    await page.clock.install();
+    test.setTimeout(90_000);
+
     await page.addInitScript(() => {
+      localStorage.clear();
       Math.random = () => 0;
     });
-
+    await page.clock.install();
     await page.goto(localePath('/testing'));
 
     const terminal = page.getByTestId('terminal-content');
