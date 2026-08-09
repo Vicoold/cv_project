@@ -54,7 +54,7 @@
 - Create: `portfolio-playwright/tests/**` — verified mirror of source specs, page objects, and locale helper, excluding the private source README.
 - Create: `.github/workflows/portfolio-playwright.yml` — public production smoke/regression workflow with artifacts.
 - Modify: `Piotr_Dolinski_SDET_CV_EN.html` — title alignment, concrete AI work, CSS spacing, public link, and verified BUG TDD description.
-- Replace: `output/pdf/Piotr_Dolinski_CV.pdf` — regenerated two-page selectable-text artifact.
+- Replace: `output/pdf/Piotr_Dolinski_Senior_SDET_QA_Lead_CV.pdf` — regenerated two-page selectable-text artifact.
 
 ### Task 1: Establish Failing Regression Checks for Known Source Defects
 
@@ -452,7 +452,7 @@ Expected: dependency installation, type checking, discovery, and all black-box e
 
 **Files:**
 - Modify: `Piotr_Dolinski_SDET_CV_EN.html`
-- Replace: `output/pdf/Piotr_Dolinski_CV.pdf`
+- Replace: `output/pdf/Piotr_Dolinski_Senior_SDET_QA_Lead_CV.pdf`
 
 **Interfaces:**
 - Consumes: the verified public package URL and inspected BUG test evidence.
@@ -482,7 +482,7 @@ git diff --check
 
 - [ ] **Step 3: Regenerate the PDF from the HTML source**
 
-Use the repository's established WeasyPrint workflow to write `output/pdf/Piotr_Dolinski_CV.pdf`. Do not edit the PDF independently from the HTML source.
+Use the repository's established WeasyPrint workflow to write `output/pdf/Piotr_Dolinski_Senior_SDET_QA_Lead_CV.pdf`. Do not edit the PDF independently from the HTML source.
 
 - [ ] **Step 4: Verify PDF structure, text, and layout**
 

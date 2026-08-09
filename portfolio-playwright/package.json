@@ -1,0 +1,25 @@
+{
+  "name": "piotr-dolinski-portfolio-playwright",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Public black-box Playwright suite for piotrdolinski.com",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "playwright test",
+    "test:ci": "playwright test --workers=1",
+    "test:list": "playwright test --list",
+    "typecheck": "tsc --noEmit",
+    "report": "playwright show-report"
+  },
+  "overrides": {
+    "playwright-core": "1.58.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.11.0",
+    "@playwright/test": "1.58.1",
+    "@types/node": "20.19.30",
+    "typescript": "5.9.3"
+  }
+}
