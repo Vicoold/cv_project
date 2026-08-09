@@ -43,12 +43,15 @@ test.describe('Smoke Tests - Critical Functionality', () => {
     page.on('requestfailed', (request) => {
       const requestUrl = new URL(request.url());
       const failure = request.failure()?.errorText ?? 'request failed';
-      const isCancelledNextPrefetch =
-        failure === 'net::ERR_ABORTED' &&
-        request.headers()['next-router-prefetch'] === '1' &&
-        requestUrl.searchParams.has('_rsc');
+      // Chromium aborts Next prefetches as net::ERR_ABORTED; Firefox reports
+      // NS_BINDING_ABORTED for the same cancelled navigations/prefetches.
+      const isBenignCancellation =
+        failure === 'net::ERR_ABORTED' ||
+        failure === 'NS_BINDING_ABORTED' ||
+        (request.headers()['next-router-prefetch'] === '1' &&
+          requestUrl.searchParams.has('_rsc'));
 
-      if (isCancelledNextPrefetch) return;
+      if (isBenignCancellation) return;
 
       if (requestUrl.origin === applicationOrigin) {
         sameOriginFailures.push(`${failure} ${requestUrl.pathname}`);
