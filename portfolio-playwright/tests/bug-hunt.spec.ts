@@ -11,21 +11,20 @@ const BUG_6_MESSAGES: Record<string, string> = {
   ar: 'انتهى الاختبار بنجاح، تم العثور على خطأ! 🐛',
 };
 
-// de/es/ar currently reuse the English hunt copy for bugs 9/10 in messages/*.json.
 const BUG_9_MESSAGES: Record<string, string> = {
   en: 'Bright light!',
   pl: 'Jasne światło!',
-  de: 'Bright light!',
-  es: 'Bright light!',
-  ar: 'Bright light!',
+  de: 'Helles Licht!',
+  es: 'Luz brillante!',
+  ar: 'ضوء ساطع',
 };
 
 const BUG_10_MESSAGES: Record<string, string> = {
   en: "Can't hide anything from you",
   pl: 'Nic się przed tobą nie ukryje',
-  de: "Can't hide anything from you",
-  es: "Can't hide anything from you",
-  ar: "Can't hide anything from you",
+  de: 'Vor dir kann man nichts verstecken',
+  es: 'No se te puede esconder nada',
+  ar: 'لا يمكن إخفاء أي شيء عنك',
 };
 
 const COMPLETED_LABELS: Record<string, string> = {
