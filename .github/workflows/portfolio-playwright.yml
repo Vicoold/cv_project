@@ -7,6 +7,7 @@ on:
       - '.github/workflows/portfolio-playwright.yml'
   pull_request:
   workflow_dispatch:
+  # Once a week (Monday 06:17 UTC) — production smoke against piotrdolinski.com
   schedule:
     - cron: '17 6 * * 1'
 

@@ -31,10 +31,27 @@ async function expectSectionReady(page: Page, testId: string) {
   await expect(page.getByTestId(testId)).toBeVisible();
 }
 
+/**
+ * Full-page axe scans include the fixed bug-hunt counter. Wait until that chrome is
+ * painted at full opacity so entrance animations cannot fake color-contrast failures
+ * against content underneath (e.g. the /testing terminal panel).
+ */
+async function expectFullPageReadyForA11yScan(page: Page) {
+  await expect(page.getByRole('main')).toBeVisible();
+
+  const counter = page.getByTestId('bug-hunt-counter');
+  await expect(counter).toBeVisible();
+  await expect
+    .poll(async () =>
+      counter.evaluate((element) => Number.parseFloat(window.getComputedStyle(element).opacity)),
+    )
+    .toBeGreaterThanOrEqual(0.99);
+}
+
 test.describe('Accessibility Tests', () => {
   test('homepage has no automatically detectable accessibility issues', async ({ page }) => {
     await page.goto(localePath());
-    await expect(page.getByRole('main')).toBeVisible();
+    await expectFullPageReadyForA11yScan(page);
 
     const accessibilityScanResults = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
@@ -171,7 +188,7 @@ test.describe('Accessibility Tests', () => {
 
   test('color contrast has no automatically detectable WCAG AA violations', async ({ page }) => {
     await page.goto(localePath());
-    await expect(page.getByRole('main')).toBeVisible();
+    await expectFullPageReadyForA11yScan(page);
 
     const accessibilityScanResults = await new AxeBuilder({ page })
       .withTags(['wcag2aa'])
@@ -237,7 +254,7 @@ test.describe('Accessibility - Sections', () => {
   for (const route of ['/testing', '/projects', '/about']) {
     test(`${route} page has no automatically detectable accessibility issues`, async ({ page }) => {
       await page.goto(localePath(route));
-      await expect(page.getByRole('main')).toBeVisible();
+      await expectFullPageReadyForA11yScan(page);
 
       const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
 
