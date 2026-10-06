@@ -36,10 +36,15 @@ test.describe('Flashlight', () => {
     const glow = page.getByTestId('flashlight-glow');
     await expect(glow).toBeAttached();
 
+    // The glow node is server-rendered, so it exists before MouseTracker
+    // attaches its listener in useEffect. A single move before that is
+    // lost, and re-reading the variable never recovers it. Keep moving.
     // Coordinates must sit inside every project viewport (incl. 390px phones).
-    await page.mouse.move(100, 300, { steps: 5 });
     await expect
-      .poll(() => page.evaluate(() => document.documentElement.style.getPropertyValue('--mouse-x')))
+      .poll(async () => {
+        await page.mouse.move(100, 300);
+        return page.evaluate(() => document.documentElement.style.getPropertyValue('--mouse-x'));
+      })
       .toBe('100px');
 
     const background = await glow.evaluate((el) => getComputedStyle(el).backgroundImage);
@@ -51,9 +56,14 @@ test.describe('Flashlight', () => {
     test.skip(!testInfo.project.use.hasTouch, 'requires a touch context');
 
     await page.goto(localePath('/about'));
-    await page.touchscreen.tap(300, 500);
+    await expect(page.getByTestId('flashlight-glow')).toBeAttached();
+
+    // Same hydration gap as the mouse test: repeat the tap until the listener is up.
     await expect
-      .poll(() => page.evaluate(() => document.documentElement.style.getPropertyValue('--mouse-x')))
+      .poll(async () => {
+        await page.touchscreen.tap(300, 500);
+        return page.evaluate(() => document.documentElement.style.getPropertyValue('--mouse-x'));
+      })
       .toBe('300px');
   });
 });
