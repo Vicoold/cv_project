@@ -133,6 +133,20 @@ test.describe('Bug Hunt Feature', () => {
     await expect(message).toContainText(/shouldn't be clicking this/i);
   });
 
+  test('Bug 4 button hangs loose for a moment after click', async ({ page }) => {
+    await page.goto(localePath('/projects'));
+
+    const codeButton = page
+      .locator('[data-testid="project-card"][data-project-slug="bug-the-gathering"]')
+      .getByTestId('private-code-button');
+    await expect(codeButton).toBeVisible();
+    await clickInViewport(codeButton);
+
+    const transformOf = () => codeButton.evaluate((el) => getComputedStyle(el).transform);
+    await expect.poll(transformOf, { timeout: 5000 }).not.toBe('none');
+    await expect.poll(transformOf, { timeout: 8000 }).toBe('none');
+  });
+
   test('Bug 5: Found via multiple language switches', async ({ page, isMobile }) => {
     const switchLang = async (lang: string) => {
       const langCode =
